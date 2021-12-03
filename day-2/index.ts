@@ -6,8 +6,6 @@ const data: string[] = fs
   .replace(/\n*$/, "")
   .split('\n');
 
-console.log('data', data)
-
 enum Command {
   FORWARD = 'forward',
   DOWN = 'down',
