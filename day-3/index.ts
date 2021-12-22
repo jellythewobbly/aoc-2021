@@ -3,19 +3,19 @@ const fs = require('fs');
 const data: string[] = fs
   .readFileSync('input.txt')
   .toString()
-  .replace(/\n*$/, "")
-  .split('\n')
+  .replace(/\n*$/, '')
+  .split('\n');
 
-  const binaryToDecimal = (binary: number) => {
-    let decimal = 0;
-    const digits = binary.toString().split('');
-    let digitValue = 1;
-    for (let i = digits.length - 1; i >= 0; i--) {
-      decimal += digitValue * +digits[i];
-      digitValue *= 2;
-    }
-    return decimal;
+const binaryToDecimal = (binary: number) => {
+  let decimal = 0;
+  const digits = binary.toString().split('');
+  let digitValue = 1;
+  for (let i = digits.length - 1; i >= 0; i--) {
+    decimal += digitValue * +digits[i];
+    digitValue *= 2;
   }
+  return decimal;
+};
 
 const computePowerConsumption = (data: string[]) => {
   const gamma = [];
@@ -36,12 +36,14 @@ const computePowerConsumption = (data: string[]) => {
   }
 
   return binaryToDecimal(+gamma.join('')) * binaryToDecimal(+epsilon.join(''));
-}
+};
 
 console.log(`Part 1, ${computePowerConsumption(data)}`);
 
-const filter1 = (input: string[], index: number) => input.filter(i => i[index] === '1');
-const filter0 = (input: string[], index: number) => input.filter(i => i[index] === '0');
+const filter1 = (input: string[], index: number) =>
+  input.filter((i) => i[index] === '1');
+const filter0 = (input: string[], index: number) =>
+  input.filter((i) => i[index] === '0');
 
 const computeLifeSupportRating = (data: string[]) => {
   let oxygen = [...data];
@@ -89,6 +91,6 @@ const computeLifeSupportRating = (data: string[]) => {
   }
 
   return binaryToDecimal(+oxygen[0]) * binaryToDecimal(+co2[0]);
-}
+};
 
 console.log(`Part 2, ${computeLifeSupportRating(data)}`);
